@@ -34,7 +34,7 @@ class Note():
                 note = note + 'b'
             elif character == '#':
                 if 'b' in note:
-                    note = note[:len(note) - 1]
+                    note = note[:-1]
                 else:
                     note = note + '#'
         return note
@@ -47,7 +47,7 @@ class Note():
                 note = note + '#'
             elif character == 'b':
                 if '#' in note:
-                    note = note[:len(note) - 1]
+                    note = note[:-1]
                 else:
                     note = note + 'b'
         return note

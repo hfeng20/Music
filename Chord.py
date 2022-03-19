@@ -82,7 +82,7 @@ class Chord():
             return True
         return False
 
-# root = Note('E', 4, 1/4, 6)
-# chord = Chord(root, 'M', '5')
-# for note in chord.notes:
-#     print(note.note + " " + (str)(note.octave))
+root = Note('C', 4, 1/4, 6)
+chord = Chord(root, 'half-dim', '42')
+for note in chord.notes:
+    print(note.note + " " + (str)(note.octave))
