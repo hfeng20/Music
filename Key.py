@@ -9,3 +9,4 @@ class Key:
         else:
             self.root = key[0]
             self.quallity = key[1]
+
