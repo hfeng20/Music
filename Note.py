@@ -1,4 +1,4 @@
-# NOTES = ['Ab','A','A#','Bb','B','B#','Cb','C','C#','Db','D','D#','Eb','E','Fb','E#','F','F#','Gb','G', 'G#']
+NOTES = ['Ab','A','A#','Bb','B','B#','Cb','C','C#','Db','D','D#','Eb','E','Fb','E#','F','F#','Gb','G', 'G#']
 MAJOR_THIRDS = dict()
 MAJOR_THIRDS['A'] = 'C#'
 MAJOR_THIRDS['B'] = 'D#'
@@ -51,7 +51,3 @@ class Note():
                 else:
                     note = note + 'b'
         return note
-
-
-note = Note('G', 4, 1/4, 6)
-print(note.getMinorThird())
