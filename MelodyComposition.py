@@ -1,2 +1,2 @@
-from Chord import *
+from Key import *
 
