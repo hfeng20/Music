@@ -26,6 +26,16 @@ class Note():
         self.octave = octave
         self.duration = duration
         self.volume = volume
+        try:
+            if self.letter not in LETTERS:
+                raise Exception("Invalid Note.")
+            if len(note) > 1:
+                accidental = note[1]
+                for i in range(1, len(note)):
+                    if note[i] != accidental:
+                        raise Exception("Invalid Note.")
+        except Exception as E:
+            raise
 
     def getMinorThird(self):
         note = MINOR_THIRDS[self.letter]

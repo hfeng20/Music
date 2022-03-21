@@ -1,3 +1,4 @@
+from multiprocessing.pool import TERMINATE
 from Note import *
 
 NOTES = ['Ab','A','A#','Bb','B','B#','Cb','C','C#','Db','D','D#','Eb','E','E#','Fb','F','F#','Gb','G','G#']
@@ -19,6 +20,14 @@ CHORD_STACKS['dom'] = ['M','m','m']
 class Chord():
 
     def __init__(self, root, quality, structure):
+        try:
+            if quality not in CHORD_STACKS.keys():
+                raise Exception("Invalid chord quality.")
+            if structure not in STRUCTURES and structure not in SEVENTH_STRUCTURES:
+                raise Exception("Invalid chord inversion.")
+        except Exception as E:
+            raise
+            return
         self.root = root
         self.quality = quality
         self.structure = structure
@@ -81,8 +90,10 @@ class Chord():
         if self.structure in SEVENTH_STRUCTURES:
             return True
         return False
-
-root = Note('C', 4, 1/4, 6)
-chord = Chord(root, 'half-dim', '42')
-for note in chord.notes:
-    print(note.note + " " + (str)(note.octave))
+# try:
+#     root = Note('C#', 4, 1/4, 6)
+#     chord = Chord(root, 'half-dim', '42')
+#     for note in chord.notes:
+#         print(note.note + " " + (str)(note.octave))
+# except Exception as E:
+#     print(E)
