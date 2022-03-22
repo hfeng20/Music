@@ -15,6 +15,13 @@ NOTES_DICT[9] = ['F#','Gb']
 NOTES_DICT[10] = ['G']
 NOTES_DICT[11] = ['G#','Ab']
 
+MAJOR_NUMERALS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii']
+MINOR_NUMERALS = ['i', 'ii', 'III', 'iv', 'V', 'VI', 'vii']
+
+MAJOR_SEQUENCE = ['M','m','m','M','dom','m','half-dim']
+
+MINOR_SEQUENCE = ['m','dim','aug','m','dom','M','dim']
+
 LETTERS = ['A','B','C','D','E','F','G']
 
 class Key:
@@ -23,6 +30,7 @@ class Key:
         self.key = key
         self.root = None
         self.quality = None
+
         if len(key) > 2:
             self.root = key[:2]
             self.quality = key[2:]
@@ -48,20 +56,26 @@ class Key:
                     noteNumberArray.append((noteNumberArray[len(noteNumberArray) - 1] + 1) % len(NOTES_DICT))
                 else:
                     noteNumberArray.append((noteNumberArray[len(noteNumberArray) - 1] + 2) % len(NOTES_DICT))
+
         if self.quality == 'm':
             for i in range(0,6):
                 if i == 1 or i == 4:
                     noteNumberArray.append((noteNumberArray[len(noteNumberArray) - 1] + 1) % len(NOTES_DICT))
+                elif i == 5:
+                    noteNumberArray.append((noteNumberArray[len(noteNumberArray) - 1] + 3) % len(NOTES_DICT))
                 else:
                     noteNumberArray.append((noteNumberArray[len(noteNumberArray) - 1] + 2) % len(NOTES_DICT))
+
         for number in noteNumberArray[1:]:
             targetLetter = LETTERS[(LETTERS.index((self.scale[len(self.scale) - 1])[:1]) + 1) % len(LETTERS)]
             for possibleNote in NOTES_DICT[number]:
                 if(possibleNote[:1] == targetLetter):
                     self.scale.append(possibleNote)
+
         conflict = False
         sharp = False
         flat = False
+
         for note in self.scale:
             if '#' in note:
                 sharp = True
@@ -70,9 +84,21 @@ class Key:
             if sharp and flat or len(self.scale) != 7:
                 raise Exception("Invalid key.")
 
+        self.chords = dict()
+
+        if self.quality == 'M':
+            self.chords['I'] = self.root + "M"
+            for i in range(7):
+                self.chords[MAJOR_NUMERALS[i]] = (self.scale[i] + " " + MAJOR_SEQUENCE[i])
+
+        if self.quality == 'm':
+            self.chords['i'] = self.root + "m"
+            for i in range(7):
+                self.chords[MINOR_NUMERALS[i]] = (self.scale[i] + " " + MINOR_SEQUENCE[i])
+
 
 try:
-    key = Key("C#m")
+    key = Key("CM")
     print(key.scale)
 except Exception as E:
     print(E)
