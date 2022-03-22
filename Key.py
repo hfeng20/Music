@@ -97,9 +97,9 @@ class Key:
                 self.chords[MINOR_NUMERALS[i]] = (self.scale[i] + " " + MINOR_SEQUENCE[i])
 
 
-try:
-    key = Key("CM")
-    print(key.scale)
-except Exception as E:
-    print(E)
+# try:
+#     key = Key("CM")
+#     print(key.scale)
+# except Exception as E:
+#     print(E)
 
