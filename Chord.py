@@ -2,7 +2,7 @@ from Note import *
 
 NOTES = ['Ab','A','A#','Bb','B','B#','Cb','C','C#','Db','D','D#','Eb','E','E#','Fb','F','F#','Gb','G','G#']
 
-STRUCTURES = ['5','6','64']
+STRUCTURES = ['53','63','64']
 SEVENTH_STRUCTURES = ['7','65','43', '42']
 
 CHORD_STACKS = dict()
@@ -82,7 +82,7 @@ class Chord():
             return True
         return False
 
-root = Note('C', 4, 1/4, 6)
-chord = Chord(root, 'half-dim', '42')
-for note in chord.notes:
-    print(note.note + " " + (str)(note.octave))
+# root = Note('C', 4, 1/4, 6)
+# chord = Chord(root, 'half-dim', '42')
+# for note in chord.notes:
+#     print(note.note + " " + (str)(note.octave))
